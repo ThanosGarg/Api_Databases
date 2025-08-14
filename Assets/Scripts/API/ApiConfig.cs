@@ -11,7 +11,7 @@ namespace WeatherApp.Config
     {
         private static string _apiKey;
         private static bool _isLoaded = false;
-        
+
         /// <summary>
         /// Get the OpenWeatherMap API key from configuration
         /// </summary>
@@ -26,14 +26,14 @@ namespace WeatherApp.Config
                 return _apiKey;
             }
         }
-        
+
         /// <summary>
         /// Load configuration from the config.json file
         /// </summary>
         private static void LoadConfiguration()
         {
             string configPath = Path.Combine(Application.streamingAssetsPath, "config.json");
-            
+
             if (File.Exists(configPath))
             {
                 try
@@ -42,7 +42,7 @@ namespace WeatherApp.Config
                     var config = JsonUtility.FromJson<ConfigData>(jsonContent);
                     _apiKey = config.openWeatherMapApiKey;
                     _isLoaded = true;
-                    
+
                     Debug.Log("API configuration loaded successfully");
                 }
                 catch (System.Exception ex)
@@ -60,17 +60,17 @@ namespace WeatherApp.Config
                 _isLoaded = true;
             }
         }
-        
+
         /// <summary>
         /// Check if the API key is properly configured
         /// </summary>
         public static bool IsApiKeyConfigured()
         {
-            return !string.IsNullOrEmpty(OpenWeatherMapApiKey) && 
+            return !string.IsNullOrEmpty(OpenWeatherMapApiKey) &&
                    OpenWeatherMapApiKey != "YOUR_API_KEY_HERE";
         }
     }
-    
+
     /// <summary>
     /// Data structure for the configuration JSON file
     /// </summary>
